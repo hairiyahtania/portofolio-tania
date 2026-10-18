@@ -1,6 +1,33 @@
 from flask import Flask, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='../templates', static_folder='../static')
+
+@app.route("/")
+def home():
+    return render_template("index.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/skills")
+def skills():
+    return render_template("skills.html", skills=SKILLS_DATA)
+
+@app.route("/projects")
+def projects():
+    return render_template("projects.html", projects=PROJECTS)
+
+@app.route("/blog")
+def blog():
+    return render_template("blog.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
+if __name__ == "__main__":
+    app.run(debug=True, port=5000)
 
 PROJECTS = [
     {
@@ -55,30 +82,3 @@ SKILLS_DATA = [
     {"name": "Git & Dokumentasi", "level": 65},
     {"name": "Data Analysis (Pandas)", "level": 50}
 ]
-
-@app.route("/")
-def home():
-    return render_template("index.html")
-
-@app.route("/about")
-def about():
-    return render_template("about.html")
-
-@app.route("/skills")
-def skills():
-    return render_template("skills.html", skills=SKILLS_DATA)
-
-@app.route("/projects")
-def projects():
-    return render_template("projects.html", projects=PROJECTS)
-
-@app.route("/blog")
-def blog():
-    return render_template("blog.html")
-
-@app.route("/contact")
-def contact():
-    return render_template("contact.html")
-
-if __name__ == "__main__":
-    app.run(debug=True, port=5000)
