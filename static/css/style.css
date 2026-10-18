@@ -1083,3 +1083,45 @@ footer {
     navigation: none;
   }
 }
+
+/* ========================================================
+   RESPONSIVE DESIGN
+   ======================================================== */
+@media (max-width: 640px) {
+  header {
+    flex-direction: column;
+    text-align: center;
+    padding: 1rem;
+    border-radius: var(--r-lg);
+    position: static;
+  }
+  header nav {
+    justify-content: center;
+  }
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+  .hero-text p {
+    margin: 0 auto;
+  }
+  .hero-text h2 {
+    font-size: 1.95rem;
+  }
+  .section-title {
+    font-size: 1.4rem;
+  }
+  .card-grid, .project-grid, .blog-grid, .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .quote {
+    padding: 1.6rem;
+  }
+  .quote::before {
+    font-size: 3.5rem;
+  }
+  .about-content {
+    padding: 1.5rem;
+  }
+}
