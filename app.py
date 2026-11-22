@@ -66,6 +66,7 @@ def tambah(kategori):
         if not deskripsi:
             return "Gagal Deskripsi tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
         data[kategori].append({"judul": judul, "deskripsi": deskripsi})
+
     try:
         save_data(data)
     except:
