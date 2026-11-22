@@ -1,0 +1,12 @@
+{
+  "skills": [
+    {"judul": "Figma", "kategori": "skill"},
+    {"judul": "Canva", "kategori": "skill"},
+    {"judul": "Ms Office", "kategori": "skill"}
+  ],
+  "projects": [
+    {"judul": "Portofolio Website", "deskripsi": "Website portofolio pribadi yang dibuat dengan Flask dan HTML/CSS", "link": "#"},
+    {"judul": "Aplikasi kasir", "deskripsi": "Aplikasi kasir untuk toko retail dan pengelolaan transaksi", "link": "#"},
+    {"judul": "Aplikasi To Do List", "deskripsi": "Aplikasi pengelola tugas harian dengan fitur tambah, hapus dan tandai selesai", "link": "#"}
+  ]
+}
