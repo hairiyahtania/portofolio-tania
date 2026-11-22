@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html><head><title>Dashboard</title>
+<style>body{font-family:sans-serif;max-width:800px;margin:20px auto;padding:20px;background:#f9f3ff}div{background:white;padding:20px;border-radius:15px;margin-bottom:20px}input{padding:8px;margin:5px;border:1px solid #ddd;border-radius:8px}button{padding:8px 15px;background:#a855f7;color:white;border:none;border-radius:8px;cursor:pointer}a{color:red;text-decoration:none;margin-left:10px}</style>
+</head><body>
+<h1>Dashboard Tania ✨</h1>
+<a href="/">Lihat Website</a> | <a href="/logout">Logout</a>
+
+<div><h3>Skills</h3>
+{% for s in data.skills %}<p>• {{s}} <a href="/hapus/skills/{{loop.index0}}">Hapus</a></p>{% endfor %}
+<form action="/tambah/skills" method="POST"><input name="judul" placeholder="Skill baru" required><input name="deskripsi" value="skill" type="hidden"><button>Tambah Skill</button></form>
+</div>
+
+<div><h3>Projects</h3>
+{% for p in data.projects %}<p><b>{{p.judul}}</b> - {{p.deskripsi}} <a href="/hapus/projects/{{loop.index0}}">Hapus</a></p>{% endfor %}
+<form action="/tambah/projects" method="POST"><input name="judul" placeholder="Judul project" required><input name="deskripsi" placeholder="Deskripsi" required><button>Tambah</button></form>
+</div>
+
+<div><h3>Experience</h3>
+{% for e in data.experience %}<p><b>{{e.judul}}</b> - {{e.deskripsi}} <a href="/hapus/experience/{{loop.index0}}">Hapus</a></p>{% endfor %}
+<form action="/tambah/experience" method="POST"><input name="judul" placeholder="Judul" required><input name="deskripsi" placeholder="Deskripsi" required><button>Tambah</button></form>
+</div>
+
+<div><h3>Education</h3>
+{% for e in data.education %}<p><b>{{e.judul}}</b> - {{e.deskripsi}} <a href="/hapus/education/{{loop.index0}}">Hapus</a></p>{% endfor %}
+<form action="/tambah/education" method="POST"><input name="judul" placeholder="Judul" required><input name="deskripsi" placeholder="Deskripsi" required><button>Tambah</button></form>
+</div>
+</body></html>
