@@ -6,7 +6,7 @@
 <a href="/">Lihat Website</a> | <a href="/logout">Logout</a>
 
 <div><h3>Skills</h3>
-{% for s in data.skills %}<p>• {{s}} <a href="/hapus/skills/{{loop.index0}}">Hapus</a></p>{% endfor %}
+{% for s in data.skills %}<p>• <b>{{s.judul}}</b> - {{s.deskripsi}} <a href="/hapus/skills/{{loop.index0}}">Hapus</a></p>{% endfor %}
 <form action="/tambah/skills" method="POST"><input name="judul" placeholder="Skill baru" required><input name="deskripsi" value="skill" type="hidden"><button>Tambah Skill</button></form>
 </div>
 
