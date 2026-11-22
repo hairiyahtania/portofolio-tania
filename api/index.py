@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for, session
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 app = Flask(__name__, template_folder=os.path.join(BASE_DIR, "..", "templates"), static_folder=os.path.join(BASE_DIR, "..", "static"))
@@ -84,3 +84,38 @@ SKILLS_DATA = [
     {"name": "Git & Dokumentasi", "level": 65},
     {"name": "Data Analysis (Pandas)", "level": 50}
 ]
+
+# ===== DASHBOARD + CRUD =====
+app.secret_key = "tania-secret-123"
+
+DATA = {
+    "skills": [{"judul": "HTML & CSS", "deskripsi": "skill"}, {"judul": "Python", "deskripsi": "skill"}],
+    "projects": [{"judul": "Web Portofolio Pribadi", "deskripsi": "Website portofolio"}],
+    "experience": [{"judul": "Mahasiswa Informatika", "deskripsi": "Universitas PGRI Yogyakarta"}],
+    "education": [{"judul": "S1 Informatika", "deskripsi": "Universitas PGRI Yogyakarta"}],
+}
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        if request.form.get("username") == "admin" and request.form.get("password") == "admin123":
+            session["login"] = True
+            return redirect(url_for("dashboard"))
+        return "Username / password salah! <a href='/login'>Coba lagi</a>"
+    return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+@app.route("/dashboard")
+def dashboard():
+    if not session.get("login"):
+        return redirect(url_for("login"))
+    return render_template("dashboard.html", data=DATA)
+
+@app.route("/tambah/<kategori>", methods=["POST"])
+def tambah(kategori):
+    if not session.get("login"):
+        return redirect(url_for("dashboard"))
