@@ -58,16 +58,18 @@ def tambah(kategori):
     data = load_data()
     judul = request.form.get('judul', '').strip()
     deskripsi = request.form.get('deskripsi', '').strip()
-    # Validasi - tidak boleh kosong
-    if not judul or not deskripsi:
-        return "Gagal! Judul dan Deskripsi tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
+    if not judul:
+        return "Gagal Judul tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
     if kategori == 'skills':
-        if not judul:
-            return "Skill tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
-        data['skills'].append(judul)
+        data['skills'].append({"judul": judul, "deskripsi": deskripsi if deskripsi else "skill"})
     else:
+        if not deskripsi:
+            return "Gagal Deskripsi tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
         data[kategori].append({"judul": judul, "deskripsi": deskripsi})
-    save_data(data)
+    try:
+        save_data(data)
+    except:
+        pass
     return redirect(url_for('dashboard'))
 
 # CRUD - Hapus
