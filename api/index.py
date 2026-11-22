@@ -6,7 +6,7 @@ app = Flask(__name__, template_folder=os.path.join(BASE_DIR, "..", "templates"),
 
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("index.html", projects=PROJECTS)
 
 @app.route("/about")
 def about():
