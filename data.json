@@ -1,12 +1,39 @@
 {
   "skills": [
-    {"judul": "Figma", "kategori": "skill"},
-    {"judul": "Canva", "kategori": "skill"},
-    {"judul": "Ms Office", "kategori": "skill"}
+    {
+      "judul": "python",
+      "kategori": "skill"
+    },
+    {
+      "judul": "HTML & CSS",
+      "kategori": "skill"
+    }
   ],
   "projects": [
-    {"judul": "Portofolio Website", "deskripsi": "Website portofolio pribadi yang dibuat dengan Flask dan HTML/CSS", "link": "#"},
-    {"judul": "Aplikasi kasir", "deskripsi": "Aplikasi kasir untuk toko retail dan pengelolaan transaksi", "link": "#"},
-    {"judul": "Aplikasi To Do List", "deskripsi": "Aplikasi pengelola tugas harian dengan fitur tambah, hapus dan tandai selesai", "link": "#"}
+    {
+      "judul": "Portofolio Website",
+      "deskripsi": "Website portofolio pribadi yang dibuat dengan Flask dan HTML/CSS",
+      "link": "#"
+    },
+    {
+      "judul": "Aplikasi kantin Kampus",
+      "deskripsi": "Aplikasi web untuk pemesanan makanan di kantin kampus secara online, lengkap dengan daftar menu, harga, dan status pesanan",
+      "link": "#"
+    }
+    
+  ],
+  "nama": "Tania",
+  "tentang": "Ga banyak yang tau tentang aku, bahkan aku sendiri kadang bingung sama diriku sendiri. Tapi yang pasti, aku suka hal-hal kecil",
+  "experience": [
+    {
+      "judul": "Asisten Praktikum",
+      "deskripsi": "Membantu praktikum kampus"
+    }
+  ],
+  "education": [
+    {
+      "judul": "Universitas",
+      "deskripsi": "Mahasiswa"
+    }
   ]
 }

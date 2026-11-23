@@ -7,17 +7,22 @@ app.secret_key = "tania-secret-123"
 DATA_FILE = "data.json"
 
 def load_data():
-    if os.path.exists(DATA_FILE):
-        with open(DATA_FILE) as f:
-            return json.load(f)
-    return {
+    default = {
         "nama": "Tania",
-        "tentang": "Ga banyak yang tau tentang aku, bahkan aku sendiri kadang bingung sama diriku sendiri. Tapi yang pasti, aku suka hal-hal kecil yang bikin bahagia.",
-        "skills": ["Python", "HTML", "Canva"],
+        "tentang": "Ga banyak yang tau tentang aku, bahkan aku sendiri kadang bingung sama diriku sendiri. Tapi yang pasti, aku suka hal-hal kecil",
+        "skills": [{"judul": "Python", "kategori": "skill"}, {"judul": "HTML", "kategori": "skill"}, {"judul": "Canva", "kategori": "skill"}],
         "projects": [{"judul": "Website Portofolio", "deskripsi": "Website portofolio pribadi"}],
         "experience": [{"judul": "Asisten Praktikum", "deskripsi": "Membantu praktikum kampus"}],
         "education": [{"judul": "Universitas", "deskripsi": "Mahasiswa"}]
     }
+    if os.path.exists(DATA_FILE):
+        with open(DATA_FILE) as f:
+            data = json.load(f)
+            for k in default:
+                if k not in data:
+                    data[k] = default[k]
+            return data
+    return default
 
 def save_data(data):
     with open(DATA_FILE, "w") as f:
@@ -26,7 +31,7 @@ def save_data(data):
 @app.route('/')
 def home():
     data = load_data()
-    return render_template('index.html', nama=data['nama'], skills=data['skills'], projects=[p['judul'] for p in data['projects']], data=data)
+    return render_template('index.html', nama=data['nama'], skills=data['skills'], projects=data['projects'], data=data)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -61,7 +66,7 @@ def tambah(kategori):
     if not judul:
         return "Gagal Judul tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
     if kategori == 'skills':
-        data['skills'].append({"judul": judul, "deskripsi": deskripsi if deskripsi else "skill"})
+        data['skills'].append({"judul": judul, "kategori": "skill"})
     else:
         if not deskripsi:
             return "Gagal Deskripsi tidak boleh kosong! <a href='/dashboard'>Kembali</a>"
@@ -85,6 +90,16 @@ def hapus(kategori, index):
     except:
         pass
     return redirect(url_for('dashboard'))
+
+@app.route('/skills')
+def skills_page():
+    data = load_data()
+    return render_template('skills.html', skills=data['skills'])
+
+@app.route('/projects')
+def projects_page():
+    data = load_data()
+    return render_template('projects.html', projects=data['projects'])
 
 if __name__ == '__main__':
     app.run(debug=True)

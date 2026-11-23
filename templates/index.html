@@ -13,8 +13,8 @@
     <nav style="background: pink; padding: 15px; text-align: center; position: sticky; top: 0;">
   <a href="#beranda" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Beranda</a>
   <a href="#tentang" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Tentang Aku</a>
-  <a href="#skill" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Skill</a>
-  <a href="#project" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Project</a>
+  <a href="/skills" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Skill</a>
+  <a href="/projects" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Project</a>
   <a href="#hobi" style="margin: 10px; text-decoration: none; color: black; font-weight: bold;">Hobi</a>
 </nav>
     <div class="card" id="beranda">
@@ -22,11 +22,13 @@
     <h1 id="tentang">Halo, aku Tania ✨</h1>
         <p>Ini website portofolio pertama ku yang dibuat pakai Python + Flask!</p>
         <h3 id="skill">My Skills:</h3>
-        {% for s in skills %}
-            <span class="skill">{{ s }}</span>
-        {% endfor %}
-        <h3 id="project">My Projects:</h3>
-        <p>📁 {{ projects[0].title }}</p>
+{% for s in skills %}
+<span class="skill">{{ s.judul }}</span>
+{% endfor %}
+<h3 id="project">My Projects:</h3>
+{% for p in projects %}
+<p><b>{{ p.judul }}</b> - {{ p.deskripsi }}</p>
+{% endfor %}
         <br>
         <a href="https://www.instagram.com/taniamasang" target="_blank" style="background: #ff5da2; color: white; padding: 10px 20px; border-radius: 20px; text-decoration: none; font-weight: bold;">Follow Instagram Ku 💖</a>
 
